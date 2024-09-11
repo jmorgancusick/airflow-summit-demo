@@ -20,6 +20,8 @@ resource "aws_s3_bucket_ownership_controls" "example" {
 }
 
 resource "aws_s3_bucket_policy" "allow_this_account_admins" {
+  depends_on = [aws_s3_bucket_public_access_block.public_access_block]
+
   bucket = aws_s3_bucket.example.id
   policy = data.aws_iam_policy_document.this_accounts_admins.json
 }
