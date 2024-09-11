@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "this_accounts_admins" {
 
     principals {
       type        = "AWS"
-      identifiers = concat(tolist(data.aws_iam_roles.admins.arns), ["*"])
+      identifiers = data.aws_iam_roles.admins.arns
     }
 
     actions = [
